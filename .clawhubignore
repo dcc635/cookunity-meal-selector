@@ -1,0 +1,4 @@
+# The published bundle is copied into every installer's workspace, so keep it lean.
+# The mascot is ~1.8MB and only ever renders on GitHub — the README's <img> tag
+# will dangle inside the bundle, which is harmless since nothing renders it there.
+docs/

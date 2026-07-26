@@ -1,5 +1,10 @@
 # CookUnity Meal Selector
 
+<p align="center">
+  <img src="docs/mascot.png" width="420"
+       alt="Cartoon lobster in a hoodie standing in a sunny San Francisco apartment, holding a CookUnity delivery box in one claw and a tray of chicken, broccoli, tomatoes, and couscous in the other.">
+</p>
+
 An [OpenClaw](https://openclaw.ai) skill that runs your weekly [CookUnity](https://www.cookunity.com)
 order for you.
 
@@ -247,9 +252,10 @@ Two things to know before you publish:
   redistribute it, commercially, without attribution. That's why this repo ships an MIT-0
   `LICENSE`.
 - **The bundle includes every file in the folder** (up to 50MB), honoring `.gitignore` and
-  `.clawhubignore`. `*.db` is gitignored here, so your order history stays local — but do
-  re-read `references/config.md` before publishing a fork, since that file is *designed* to
-  hold your chat id, vault names, and paths.
+  `.clawhubignore`. `*.db` is gitignored and `docs/` is clawhubignored, so neither your order
+  history nor the 1.8MB mascot ships to installers — but do re-read `references/config.md`
+  before publishing a fork, since that file is *designed* to hold your chat id, vault names,
+  and paths.
 
 ---
 
