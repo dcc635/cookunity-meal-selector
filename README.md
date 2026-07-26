@@ -6,11 +6,60 @@
 </p>
 
 An [OpenClaw](https://openclaw.ai) skill that runs your weekly [CookUnity](https://www.cookunity.com)
-order for you.
+order for you. Every Friday it logs in, picks meals you haven't eaten recently, confirms the
+order, logs what it ordered to SQLite, and texts you the result.
 
-Every Friday it logs in, picks meals you haven't eaten recently, confirms the order, logs what
-it ordered to SQLite, and texts you the result. You can also ask it to swap a single meal any
-time before the cutoff.
+## Quick install
+
+Paste this into your OpenClaw agent and it will set the whole thing up:
+
+```text
+Install and configure the CookUnity Meal Selector skill from
+https://github.com/dcc635/cookunity-meal-selector — do all of the following for me.
+
+1. Install it:  openclaw skills install git:dcc635/cookunity-meal-selector
+   Then run `openclaw skills info cookunity-meal-selector` and note the install path;
+   everything below is relative to that directory.
+
+2. Read the installed SKILL.md, README.md, and references/config.md so you understand
+   how the skill works before configuring it.
+
+3. Create the order-history database:
+     sqlite3 ~/.openclaw/workspace/cookunity.db < <install path>/db/schema.sql
+   Confirm with: sqlite3 ~/.openclaw/workspace/cookunity.db ".schema orders"
+   If that database already exists, leave it alone and tell me.
+
+4. Interview me, then fill in references/config.md. Ask about, one at a time:
+     - how many meals I get per week and what mix (premium, new, breakfast, vegetarian)
+     - what day my box is delivered, and whether the Friday run should order for the
+       next delivery or the one after
+     - where my CookUnity login lives: a 1Password item, or environment variables
+     - which chat channel should notify me, and my chat id — offer to look it up with
+       `openclaw directory self --channel telegram`
+   Fill in every placeholder. Show me the finished file.
+
+5. Offer to backfill my recent orders into the database from my CookUnity order emails
+   or account history, so repeat-prevention works from week one instead of week seven.
+   Include the menu section header verbatim in the `category` column. Skip if I decline.
+
+6. Register the weekly cron job using references/install-cron.sh, with the variables at
+   the top edited to match my config. Then show me the entry from `openclaw cron list`.
+
+7. Tell me what you set up, and what is still left for me to do by hand.
+
+Rules: never write my password into any file — credentials go in 1Password or the
+Gateway environment only. Do NOT place a real CookUnity order during setup; this is
+setup only. Ask me before overwriting anything that already exists.
+```
+
+It will stop and ask you for your credentials location, chat id, and meal preferences —
+those can't be guessed. Nothing gets ordered until you ask for it.
+
+Prefer to do it yourself? See [Install](#install) below for the manual steps.
+
+---
+
+You can also ask it to swap a single meal any time before the cutoff.
 
 The interesting part is the **repeat prevention**: a local SQLite table of everything you've
 ever been sent, so the picker can enforce "no regular meal within 6 weeks, no breakfast item
@@ -35,6 +84,9 @@ CookUnity redesigns. See [When it breaks](#when-it-breaks).
 ---
 
 ## Install
+
+The [Quick install](#quick-install) prompt above walks your agent through all six steps. Do it
+by hand if you'd rather see each one.
 
 ### 1. Install the skill
 
