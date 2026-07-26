@@ -1,4 +1,6 @@
-# The published bundle is copied into every installer's workspace, so keep it lean.
-# The mascot is ~1.8MB and only ever renders on GitHub — the README's <img> tag
-# will dangle inside the bundle, which is harmless since nothing renders it there.
+# Keeps repo furniture out of the ClawHub bundle. The mascot is ~1.8MB and only ever
+# renders on GitHub, so there is no reason to ship it to people installing the skill.
+#
+# Scope: this file affects `clawhub skill publish` only. `openclaw skills install git:...`
+# is a plain clone and will still copy docs/.
 docs/

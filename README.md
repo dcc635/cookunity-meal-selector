@@ -305,9 +305,10 @@ Two things to know before you publish:
   `LICENSE`.
 - **The bundle includes every file in the folder** (up to 50MB), honoring `.gitignore` and
   `.clawhubignore`. `*.db` is gitignored and `docs/` is clawhubignored, so neither your order
-  history nor the 1.8MB mascot ships to installers — but do re-read `references/config.md`
-  before publishing a fork, since that file is *designed* to hold your chat id, vault names,
-  and paths.
+  history nor the 1.8MB mascot ends up in a ClawHub bundle. Note that `.clawhubignore` only
+  applies to ClawHub publishes — `openclaw skills install git:...` is a plain clone and copies
+  `docs/` too. Do re-read `references/config.md` before publishing a fork, since that file is
+  *designed* to hold your chat id, vault names, and paths.
 
 ---
 
