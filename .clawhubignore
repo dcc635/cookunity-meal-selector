@@ -1,5 +1,5 @@
-# Keeps repo furniture out of the ClawHub bundle. The mascot is ~1.8MB and only ever
-# renders on GitHub, so there is no reason to ship it to people installing the skill.
+# Keeps repo furniture out of the ClawHub bundle — the mascot only ever renders on
+# GitHub, so there is no reason to ship it to people installing the skill.
 #
 # Scope: this file affects `clawhub skill publish` only. `openclaw skills install git:...`
 # is a plain clone and will still copy docs/.
