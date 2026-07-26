@@ -90,14 +90,8 @@ by hand if you'd rather see each one.
 
 ### 1. Install the skill
 
-Pick whichever route fits. All three land the skill in your active workspace's `skills/`
-directory; add `--global` to install into the shared managed skills directory instead.
-
-**From ClawHub** (once published — see [Publishing](#publishing-to-clawhub)):
-
-```bash
-openclaw skills install cookunity-meal-selector
-```
+Either route lands the skill in your active workspace's `skills/` directory; add `--global` to
+install into the shared managed skills directory instead.
 
 **Straight from GitHub:**
 
@@ -249,8 +243,8 @@ references/install-cron.sh      registers the weekly job with openclaw cron
 db/schema.sql                   orders table + indexes
 ```
 
-`SKILL.md` sits at the repo root on purpose: `openclaw skills install git:owner/repo` and
-ClawHub's GitHub importer both expect it there.
+`SKILL.md` sits at the repo root on purpose — `openclaw skills install git:owner/repo` expects
+it there, and there is no subdirectory syntax.
 
 ---
 
@@ -273,42 +267,11 @@ Run history lives in `openclaw cron runs <job-id>`.
 
 ---
 
-## Publishing to ClawHub
+## Forking
 
-[ClawHub](https://clawhub.ai) is OpenClaw's skill marketplace — that's what `openclaw skills
-install <slug>` and `openclaw skills search` talk to.
-
-```bash
-npm i -g clawhub
-clawhub login          # GitHub OAuth; or: clawhub login --token clh_...
-clawhub whoami
-```
-
-Preview, then publish:
-
-```bash
-clawhub skill publish . --dry-run
-clawhub skill publish . \
-  --slug cookunity-meal-selector \
-  --name "CookUnity Meal Selector" \
-  --changelog "Initial release"
-```
-
-New skills start at `1.0.0`; later publishes bump the patch version automatically unless you
-pass `--version`. Alternatively, use the web GitHub importer at clawhub.ai — it only sees
-`SKILL.md` at the root of **public, non-fork** repos owned by the signed-in account.
-
-Two things to know before you publish:
-
-- **Everything published to ClawHub is licensed `MIT-0`** — anyone may use, modify, and
-  redistribute it, commercially, without attribution. That's why this repo ships an MIT-0
-  `LICENSE`.
-- **The bundle includes every file in the folder** (up to 50MB), honoring `.gitignore` and
-  `.clawhubignore`. `*.db` is gitignored and `docs/` is clawhubignored, so neither your order
-  history nor the mascot ends up in a ClawHub bundle. Note that `.clawhubignore` only applies
-  to ClawHub publishes — `openclaw skills install git:...` is a plain clone and copies `docs/`
-  too. Do re-read `references/config.md` before publishing a fork, since that file is
-  *designed* to hold your chat id, vault names, and paths.
+`references/config.md` is *designed* to hold your chat id, vault names, and paths — re-read it
+before pushing a fork anywhere public. `*.db` is gitignored, so your order history stays local
+either way.
 
 ---
 

@@ -1,6 +1,0 @@
-# Keeps repo furniture out of the ClawHub bundle — the mascot only ever renders on
-# GitHub, so there is no reason to ship it to people installing the skill.
-#
-# Scope: this file affects `clawhub skill publish` only. `openclaw skills install git:...`
-# is a plain clone and will still copy docs/.
-docs/
