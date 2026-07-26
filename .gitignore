@@ -1,0 +1,22 @@
+# Order history — personal data. Bootstrap your own with db/schema.sql.
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# Packaged skill bundles (build artifacts)
+*.skill
+
+# Secrets — credentials belong in 1Password or the Gateway environment, never here.
+.env
+.env.*
+secrets.*
+credentials.*
+credentials/
+
+# OS / editor
+.DS_Store
+.idea/
+*.log
